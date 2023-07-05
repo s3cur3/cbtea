@@ -1,11 +1,12 @@
 defmodule Cbt.Accounts.User do
   use Ecto.Schema
+  use TypedEctoSchema
   import Ecto.Changeset
 
-  schema "users" do
-    field :email, :string
+  typed_schema "users" do
+    field :email, :string, null: false
     field :password, :string, virtual: true, redact: true
-    field :hashed_password, :string, redact: true
+    field :hashed_password, :string, redact: true, null: false
     field :confirmed_at, :naive_datetime
 
     timestamps()

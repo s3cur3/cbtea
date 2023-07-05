@@ -1,15 +1,12 @@
 defmodule Cbt.Thoughts do
-  alias Cbt.Distortions
+  alias Cbt.Accounts.User
+  alias Cbt.Thoughts.Thought
+  alias Cbt.Repo
 
-  def newThought do
-    %{
-      automatic_thought: "",
-      cognitive_distortions:
-        Enum.map(Distortions.all(), fn %{label: label, slug: slug} ->
-          %{label: label, slug: slug, selected: false, description: ""}
-        end),
-      challenge: "",
-      alternative_thought: ""
-    }
+  @spec create_thought(User.t() | Repo.id(), map) ::
+          {:ok, Thought.t()} | {:error, Ecto.Changeset.t()}
+  def create_thought(user, attrs \\ %{}) do
+    Thought.insert_changeset(Repo.id(user, User), attrs)
+    |> Repo.insert()
   end
 end
