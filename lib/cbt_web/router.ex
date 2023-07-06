@@ -17,12 +17,6 @@ defmodule CbtWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", CbtWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", CbtWeb do
   #   pipe_through :api
@@ -66,7 +60,9 @@ defmodule CbtWeb.Router do
 
     live_session :require_authenticated_user,
       on_mount: [{CbtWeb.UserAuth, :ensure_authenticated}] do
-      live "/users/settings", UserSettingsLive, :edit
+      live "/", HomeLive, :home
+
+      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
   end

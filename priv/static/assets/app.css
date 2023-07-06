@@ -1242,7 +1242,7 @@ select {
 }
 
 .bg-brand\/5 {
-  background-color: rgb(253 79 0 / 0.05);
+  background-color: rgb(139 119 170 / 0.05);
 }
 
 .bg-emerald-50 {
@@ -1277,6 +1277,14 @@ select {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
+.bg-brand\/25 {
+  background-color: rgb(139 119 170 / 0.25);
+}
+
+.bg-brand\/10 {
+  background-color: rgb(139 119 170 / 0.1);
 }
 
 .fill-cyan-900 {
@@ -1452,7 +1460,7 @@ select {
 
 .text-brand {
   --tw-text-opacity: 1;
-  color: rgb(253 79 0 / var(--tw-text-opacity));
+  color: rgb(139 119 170 / var(--tw-text-opacity));
 }
 
 .text-emerald-800 {

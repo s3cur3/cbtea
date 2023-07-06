@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 alias Cbt.Accounts
 
-{:ok, user} =
+{:ok, _} =
   Accounts.register_user(%{
     email: "tyler@tylerayoung.com",
     password: "test1234"
