@@ -2,11 +2,11 @@ defmodule Cbt.Thoughts.Thought do
   use Ecto.Schema
   use TypedEctoSchema
   import Ecto.Changeset
-  alias Cbt.Distortions
+  alias Cbt.Distortions.Distortion
 
   typed_schema "thoughts" do
     field :automatic_thought, :string, null: false, default: ""
-    field :cognitive_distortion, Ecto.Enum, values: Distortions.distortions()
+    field :cognitive_distortion, Ecto.Enum, values: Distortion.categories()
     field :alternative_thought, :string, null: false, default: ""
     field :challenge, :string, null: false, default: ""
 

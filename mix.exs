@@ -64,6 +64,7 @@ defmodule Cbt.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:typed_ecto_schema, "~> 0.4.0", runtime: false},
+      {:typed_struct, "~> 0.3.0", runtime: false},
       {:union_typespec,
        git: "https://github.com/felt/union_typespec.git", tag: "v0.0.2", runtime: false}
     ]
@@ -84,8 +85,10 @@ defmodule Cbt.MixProject do
         "format --check-formatted",
         "deps.unlock --check-unused",
         "test --warnings-as-errors",
-        "credo"
+        "credo",
+        "check.circular"
       ],
+      "check.circular": "cmd MIX_ENV=dev mix xref graph --label compile-connected --fail-above 0",
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
