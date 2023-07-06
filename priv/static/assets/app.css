@@ -1241,6 +1241,10 @@ select {
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
 }
 
+.bg-brand\/10 {
+  background-color: rgb(139 119 170 / 0.1);
+}
+
 .bg-brand\/5 {
   background-color: rgb(139 119 170 / 0.05);
 }
@@ -1260,11 +1264,6 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-zinc-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
-}
-
 .bg-zinc-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
@@ -1277,14 +1276,6 @@ select {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-brand\/25 {
-  background-color: rgb(139 119 170 / 0.25);
-}
-
-.bg-brand\/10 {
-  background-color: rgb(139 119 170 / 0.1);
 }
 
 .fill-cyan-900 {
@@ -1620,10 +1611,6 @@ select {
 
 .hover\:cursor-pointer:hover {
   cursor: pointer;
-}
-
-.hover\:bg-zinc-200\/80:hover {
-  background-color: rgb(228 228 231 / 0.8);
 }
 
 .hover\:bg-zinc-50:hover {
