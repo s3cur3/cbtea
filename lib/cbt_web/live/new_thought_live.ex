@@ -18,17 +18,25 @@ defmodule CbtWeb.NewThoughtLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-target={@myself}>
-        <.input field={@form[:automatic_thought]} type="text" label="Automatic Thought" placeholder="What’s going on?" />
+        <.input
+          field={@form[:automatic_thought]}
+          type="errorless-text"
+          label="Automatic Thought"
+          placeholder="What’s going on?"
+          class="peer"
+        />
 
-        <div class="space-y-2">
-          <.label for="cognitive-distortions">Cognitive Distortion</.label>
-          <div :for={distortion <- Cbt.Distortions.all_distortions()}>
-            <.distortion_select field={@form[:distortions]} distortion={distortion} />
+        <div class="space-y-8 peer-placeholder-shown:hidden">
+          <div class="space-y-2">
+            <.label for="cognitive-distortions">Cognitive Distortion</.label>
+            <div :for={distortion <- Cbt.Distortions.all_distortions()}>
+              <.distortion_select field={@form[:distortions]} distortion={distortion} />
+            </div>
           </div>
-        </div>
 
-        <.input field={@form[:challenge]} type="text" label="Challenge" />
-        <.input field={@form[:alternative_thought]} type="text" label="Alternative Thought" />
+          <.input field={@form[:challenge]} type="text" label="Challenge" />
+          <.input field={@form[:alternative_thought]} type="text" label="Alternative Thought" />
+        </div>
 
         <:actions>
           <.button phx-disable-with="Saving..." class="w-full">

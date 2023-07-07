@@ -299,7 +299,8 @@ defmodule CbtWeb.CoreComponents do
 
   attr :type, :string,
     default: "text",
-    values: ~w(checkbox color date datetime-local email file hidden month number password
+    values: ~w(checkbox color date datetime-local email errorless-text
+               file hidden month number password
                range radio search select tel text textarea time url week)
 
   attr :field, Phoenix.HTML.FormField,
@@ -386,6 +387,26 @@ defmodule CbtWeb.CoreComponents do
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
+    """
+  end
+
+  def input(%{type: "errorless-text"} = assigns) do
+    ~H"""
+    <.label for={@id}><%= @label %></.label>
+    <input
+      type="text"
+      name={@name}
+      id={@id}
+      value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+      class={[
+        "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+        "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
+        "peer",
+        @errors == [] && "border-zinc-300 focus:border-zinc-400",
+        @errors != [] && "border-rose-400 focus:border-rose-400"
+      ]}
+      {@rest}
+    />
     """
   end
 
