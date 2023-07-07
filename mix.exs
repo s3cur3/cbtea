@@ -40,7 +40,7 @@ defmodule Cbt.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 3.0"},
-      {:credo, "~> 1.6.5", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
       {:ecto_enum_migration, "~> 0.3.3"},
       {:ecto_sql, "~> 3.10"},

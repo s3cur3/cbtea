@@ -1,5 +1,6 @@
 defmodule CbtWeb.PubSub do
   alias Cbt.Accounts.User
+  alias Cbt.Repo
   alias Cbt.Thoughts.Thought
 
   @pubsub_name Cbt.PubSub

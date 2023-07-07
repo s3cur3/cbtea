@@ -1,5 +1,5 @@
 defmodule CbtWeb.UserConfirmationInstructionsLiveTest do
-  use CbtWeb.ConnCase
+  use CbtWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures

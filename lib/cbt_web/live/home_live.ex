@@ -1,6 +1,5 @@
 defmodule CbtWeb.HomeLive do
   use CbtWeb, :live_view
-  alias Cbt.Thoughts
 
   def render(assigns) do
     ~H"""
@@ -20,7 +19,7 @@ defmodule CbtWeb.HomeLive do
   end
 
   def handle_info({:new_thought_created, thought}, socket) do
-    IO.inspect(thought, label: "thought")
+    IO.puts("thought; #{inspect(thought)}")
     {:noreply, socket}
   end
 

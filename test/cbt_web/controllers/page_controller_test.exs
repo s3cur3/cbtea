@@ -1,5 +1,5 @@
 defmodule CbtWeb.PageControllerTest do
-  use CbtWeb.ConnCase
+  use CbtWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

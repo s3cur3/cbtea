@@ -1,5 +1,5 @@
 defmodule CbtWeb.UserForgotPasswordLiveTest do
-  use CbtWeb.ConnCase
+  use CbtWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
@@ -21,7 +21,7 @@ defmodule CbtWeb.UserForgotPasswordLiveTest do
         conn
         |> log_in_user(user_fixture())
         |> live(~p"/users/reset_password")
-        |> follow_redirect(conn, ~p"/")
+        |> follow_redirect(conn, ~p"/thoughts")
 
       assert {:ok, _conn} = result
     end

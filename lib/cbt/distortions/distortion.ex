@@ -1,31 +1,25 @@
 defmodule Cbt.Distortions.Distortion do
-  use TypedStruct
-  import UnionTypespec, only: [union_type: 1]
+  use Ecto.Schema
+  use TypedEctoSchema
+  import Ecto.Changeset
 
-  @categories [
-    :all_or_nothing,
-    :overgeneralization,
-    :mind_reading,
-    :fortune_telling,
-    :magnification_of_the_negative,
-    :minimization_of_the_positive,
-    :catastrophizing,
-    :emotional_reasoning,
-    :should_statements,
-    :labeling,
-    :self_blaming,
-    :other_blaming
-  ]
+  typed_schema "distortions" do
+    field :name, :string
+    field :label, :string
+    field :emoji, :string
+    field :description, :string
 
-  union_type(category :: @categories)
+    timestamps()
+  end
 
-  @spec categories() :: [category()]
-  def categories, do: @categories
-
-  typedstruct enforce: true do
-    field :emoji, String.t()
-    field :label, String.t()
-    field :slug, category()
-    field :description, String.t()
+  def insert_changeset(%__MODULE__{} = distortion, attrs) do
+    distortion
+    |> cast(attrs, [
+      :name,
+      :label,
+      :emoji,
+      :description
+    ])
+    |> validate_required([:name, :label, :emoji, :description])
   end
 end

@@ -22,16 +22,13 @@ defmodule CbtWeb.NewThoughtLive do
 
         <div class="space-y-2">
           <.label for="cognitive-distortions">Cognitive Distortion</.label>
-          <div :for={distortion <- Cbt.Distortions.all()}>
-            <input class="hidden peer" type="checkbox" name="distortions[]" id={distortion.slug} value={distortion.slug} />
-            <label
-              class="hover:cursor-pointer width-full block px-3 py-2 border focus:ring-3 focus:ring-blue-300 rounded peer-checked:bg-multiselect/100 peer-checked:text-white"
-              for={distortion.slug}
-            >
-              <%= distortion.emoji %>&nbsp; <%= distortion.label %>
-            </label>
+          <div :for={distortion <- Cbt.Distortions.all_distortions()}>
+            <.distortion_select field={@form[:distortions]} distortion={distortion} />
           </div>
         </div>
+
+        <.input field={@form[:challenge]} type="text" label="Challenge" />
+        <.input field={@form[:alternative_thought]} type="text" label="Alternative Thought" />
 
         <:actions>
           <.button phx-disable-with="Saving..." class="w-full">

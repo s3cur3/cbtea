@@ -236,6 +236,38 @@ defmodule CbtWeb.CoreComponents do
   end
 
   @doc """
+  Renders the logical checkbox used by the cognitive distortions picker.
+  """
+  attr :distortion, Cbt.Distortions.Distortion, required: true
+
+  attr :field, Phoenix.HTML.FormField,
+    doc: "a form field struct retrieved from the form, for example: @form[:email]"
+
+  def distortion_select(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    assigns =
+      assigns
+      |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", field.value) end)
+      |> assign(:name, field.name <> "[]")
+
+    ~H"""
+    <input
+      class="hidden peer"
+      type="checkbox"
+      checked={@checked}
+      name={@name}
+      id={@distortion.name}
+      value={@distortion.name}
+    />
+    <label
+      class="hover:cursor-pointer width-full block px-3 py-2 border focus:ring-3 focus:ring-blue-300 rounded peer-checked:bg-multiselect/100 peer-checked:text-white"
+      for={@distortion.name}
+    >
+      <%= @distortion.emoji %>&nbsp; <%= @distortion.label %>
+    </label>
+    """
+  end
+
+  @doc """
   Renders an input with label and error messages.
 
   A `Phoenix.HTML.FormField` may be passed as argument,

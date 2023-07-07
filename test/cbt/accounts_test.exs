@@ -1,5 +1,5 @@
 defmodule Cbt.AccountsTest do
-  use Cbt.DataCase
+  use Cbt.DataCase, async: true
 
   alias Cbt.Accounts
 

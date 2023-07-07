@@ -1,5 +1,5 @@
 defmodule CbtWeb.UserSettingsLiveTest do
-  use CbtWeb.ConnCase
+  use CbtWeb.ConnCase, async: true
 
   alias Cbt.Accounts
   import Phoenix.LiveViewTest
