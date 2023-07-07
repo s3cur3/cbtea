@@ -20,6 +20,15 @@ defmodule CbtWeb.PubSub do
     )
   end
 
+  @spec broadcast_user_thought_deletion(Thought.t()) :: any()
+  def broadcast_user_thought_deletion(thought) do
+    Phoenix.PubSub.broadcast(
+      @pubsub_name,
+      user_topic(thought.user_id),
+      {:thought_deleted, thought}
+    )
+  end
+
   @spec user_topic(User.t() | Repo.id()) :: String.t()
   def user_topic(user_or_id) do
     id = Cbt.Repo.id(user_or_id, User)

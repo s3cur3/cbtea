@@ -54,7 +54,6 @@ defmodule CbtWeb.NewThoughtLive do
 
     case Thoughts.create_thought(user, thought_params) do
       {:ok, thought} ->
-        CbtWeb.PubSub.broadcast_user_thought(thought)
         # TODO: Clear form
         {:noreply, assign_new_form_changeset(socket)}
 

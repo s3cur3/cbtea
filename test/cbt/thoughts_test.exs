@@ -36,6 +36,24 @@ defmodule Cbt.ThoughtsTest do
     assert Enum.any?(thought.distortions, &(&1.name == "overgeneralization"))
   end
 
+  test "can delete your own thoughts", %{user: user} do
+    assert {:ok, thought} = Thoughts.create_thought(user)
+    assert {:ok, _} = Thoughts.delete_thought(thought, user)
+    assert Thoughts.all_thoughts(user) == []
+  end
+
+  test "can delete your own thought by ID", %{user: user} do
+    assert {:ok, thought} = Thoughts.create_thought(user)
+    assert {:ok, _} = Thoughts.delete_thought(thought.id, user.id)
+    assert Thoughts.all_thoughts(user) == []
+  end
+
+  test "cannot delete others' thoughts", %{user: user} do
+    assert {:ok, thought} = Thoughts.create_thought(user)
+    assert {:error, msg} = Thoughts.delete_thought(thought, Ecto.UUID.generate())
+    assert is_binary(msg)
+  end
+
   test "can list all thoughts ordered by recency", %{user: user} do
     thoughts = [
       "This party is lame",

@@ -5,6 +5,7 @@ defmodule CbtWeb.ThoughtsLive do
   alias Cbt.Thoughts
   alias Cbt.Thoughts.Thought
 
+  @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-md">
@@ -26,6 +27,13 @@ defmodule CbtWeb.ThoughtsLive do
   def thought(assigns) do
     ~H"""
     <article class="border rounded p-4">
+      <button
+        class="float-right text-zinc-300 rounded focus:text-red-800 focus:outline-none focus:ring focus:ring-red-300"
+        phx-click="delete_thought"
+        phx-value-thought_id={@thought.id}
+      >
+        <.icon name="hero-trash" class="hover:text-red-800 active:text-red-800" />
+      </button>
       <div class="font-light font-xl italic border-l-2 border-brand pl-2">
         <%= @thought.automatic_thought %>
       </div>
@@ -50,6 +58,7 @@ defmodule CbtWeb.ThoughtsLive do
     """
   end
 
+  @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     user = current_user(socket)
     CbtWeb.PubSub.subscribe_user_thoughts(user)
@@ -60,8 +69,25 @@ defmodule CbtWeb.ThoughtsLive do
      |> stream(:thoughts, Thoughts.all_thoughts(user))}
   end
 
+  @impl Phoenix.LiveView
+  def handle_event("delete_thought", %{"thought_id" => thought_id_str}, socket) do
+    user = current_user(socket)
+    {thought_id, ""} = Integer.parse(thought_id_str)
+
+    case Thoughts.delete_thought(thought_id, user) do
+      {:ok, thought} -> {:noreply, socket}
+      {:error, reason} when is_binary(reason) -> {:noreply, put_flash(socket, :error, reason)}
+      {:error, _} -> {:noreply, put_flash(socket, :error, "Failed to delete thought")}
+    end
+  end
+
+  @impl Phoenix.LiveView
   def handle_info({:new_thought_created, thought}, socket) do
     {:noreply, stream_insert(socket, :thoughts, thought, at: 0)}
+  end
+
+  def handle_info({:thought_deleted, thought}, socket) do
+    {:noreply, stream_delete(socket, :thoughts, thought)}
   end
 
   def current_user(%{assigns: %{current_user: user}}), do: user
