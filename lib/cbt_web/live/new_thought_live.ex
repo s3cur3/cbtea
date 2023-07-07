@@ -53,7 +53,7 @@ defmodule CbtWeb.NewThoughtLive do
     user = current_user(socket)
 
     case Thoughts.create_thought(user, thought_params) do
-      {:ok, thought} ->
+      {:ok, _} ->
         # TODO: Clear form
         {:noreply, assign_new_form_changeset(socket)}
 

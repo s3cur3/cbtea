@@ -75,7 +75,7 @@ defmodule CbtWeb.ThoughtsLive do
     {thought_id, ""} = Integer.parse(thought_id_str)
 
     case Thoughts.delete_thought(thought_id, user) do
-      {:ok, thought} -> {:noreply, socket}
+      {:ok, _} -> {:noreply, socket}
       {:error, reason} when is_binary(reason) -> {:noreply, put_flash(socket, :error, reason)}
       {:error, _} -> {:noreply, put_flash(socket, :error, "Failed to delete thought")}
     end
