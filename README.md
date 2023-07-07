@@ -6,9 +6,12 @@
 
 CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It's a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
 
-CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud, [soon](https://github.com/s3cur3/cbtea/issues/2) with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
+CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud, [soon][v1] with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
 
-This codebase is an Elixir re-implementation of the GPL v3 [Quirk][1] React Native app. There's a demo of it in action [on the Wayback Machine][2].
+**Warning**: CBTea is pre-public beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach [v1.0][v1], we'll guarantee your data's safety.
 
-[1]: https://github.com/Flaque/quirk
-[2]: https://web.archive.org/web/20191226140443/https://www.quirk.fyi/
+This codebase is an Elixir re-implementation of the GPL v3 [Quirk][] React Native app. There's a demo of it in action [on the Wayback Machine][QuirkDemo].
+
+[v1]: https://github.com/s3cur3/cbtea/issues/2
+[Quirk]: https://github.com/Flaque/quirk
+[QuirkDemo]: https://web.archive.org/web/20191226140443/https://www.quirk.fyi/
