@@ -388,7 +388,7 @@ defmodule CbtWeb.CoreComponents do
 
   def label(assigns) do
     ~H"""
-    <label for={@for} class="block text-sm font-semibold leading-6 text-zinc-800">
+    <label for={@for} class="block text-base font-bold leading-6 text-zinc-800">
       <%= render_slot(@inner_block) %>
     </label>
     """

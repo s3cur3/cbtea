@@ -14,7 +14,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#8B77AA"
+        brand: "#8B77AA",
+        "multiselect": "#778BEB"
       }
     },
   },

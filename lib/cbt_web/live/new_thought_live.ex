@@ -18,7 +18,20 @@ defmodule CbtWeb.NewThoughtLive do
     ~H"""
     <div class="mx-auto max-w-sm">
       <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-target={@myself}>
-        <.input field={@form[:automatic_thought]} type="text" label="Automatic Thought" />
+        <.input field={@form[:automatic_thought]} type="text" label="Automatic Thought" placeholder="What’s going on?" />
+
+        <div class="space-y-2">
+          <.label for="cognitive-distortions">Cognitive Distortion</.label>
+          <div :for={distortion <- Cbt.Distortions.all()}>
+            <input class="hidden peer" type="checkbox" name="distortions[]" id={distortion.slug} value={distortion.slug} />
+            <label
+              class="hover:cursor-pointer width-full block px-3 py-2 border focus:ring-3 focus:ring-blue-300 rounded peer-checked:bg-multiselect/100 peer-checked:text-white"
+              for={distortion.slug}
+            >
+              <%= distortion.emoji %>&nbsp; <%= distortion.label %>
+            </label>
+          </div>
+        </div>
 
         <:actions>
           <.button phx-disable-with="Saving..." class="w-full">
