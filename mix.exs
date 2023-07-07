@@ -83,12 +83,13 @@ defmodule Cbt.MixProject do
         "deps.unlock --check-unused",
         "compile --warnings-as-errors",
         "format --check-formatted",
-        "deps.unlock --check-unused",
         "test --warnings-as-errors",
         "credo",
-        "check.circular"
+        "check.circular",
+        "check.dialyzer"
       ],
       "check.circular": "cmd MIX_ENV=dev mix xref graph --label compile-connected --fail-above 0",
+      "check.dialyzer": "cmd MIX_ENV=dev mix dialyzer",
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
