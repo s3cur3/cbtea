@@ -5701,7 +5701,14 @@ within:
   // js/app.js
   var import_topbar = __toESM(require_topbar());
   var csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  var liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken } });
+  var liveSocket = new LiveSocket("/live", Socket, {
+    params: {
+      _csrf_token: csrfToken,
+      locale: Intl.NumberFormat().resolvedOptions().locale,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      timezone_offset_mins: -(/* @__PURE__ */ new Date()).getTimezoneOffset()
+    }
+  });
   import_topbar.default.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
   window.addEventListener("phx:page-loading-start", (_info) => import_topbar.default.show(300));
   window.addEventListener("phx:page-loading-stop", (_info) => import_topbar.default.hide());

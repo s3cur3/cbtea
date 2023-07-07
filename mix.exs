@@ -45,6 +45,8 @@ defmodule Cbt.MixProject do
       {:ecto_enum_migration, "~> 0.3.3"},
       {:ecto_sql, "~> 3.10"},
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:ex_cldr, "~> 2.37"},
+      {:ex_cldr_dates_times, "~> 2.0"},
       {:excoveralls, "~> 0.15.0", only: [:dev, :test], runtime: false},
       {:finch, "~> 0.13"},
       {:floki, ">= 0.30.0", only: :test},
@@ -65,6 +67,7 @@ defmodule Cbt.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:typed_ecto_schema, "~> 0.4.0", runtime: false},
       {:typed_struct, "~> 0.3.0", runtime: false},
+      {:tz, "~> 0.26.2"},
       {:union_typespec,
        git: "https://github.com/felt/union_typespec.git", tag: "v0.0.2", runtime: false}
     ]
