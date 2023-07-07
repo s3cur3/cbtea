@@ -7,7 +7,7 @@ defmodule Cbt.I18n do
     field :timezone_offset_mins, integer
   end
 
-  @spec format_datetime(I18n.t(), NaiveDateTime.t()) :: String.t()
+  @spec format_datetime(t(), NaiveDateTime.t()) :: String.t()
   def format_datetime(%__MODULE__{timezone: tz, locale: locale}, %NaiveDateTime{} = naive) do
     local_date =
       naive
