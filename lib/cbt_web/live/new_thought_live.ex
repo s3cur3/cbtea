@@ -16,7 +16,7 @@ defmodule CbtWeb.NewThoughtLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-md">
       <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-target={@myself}>
         <.input
           field={@form[:automatic_thought]}

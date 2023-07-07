@@ -7,7 +7,7 @@ defmodule CbtWeb.ThoughtsLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-md">
       <.live_component module={CbtWeb.NewThoughtLive} id="new-thought-form" current_user={@current_user} />
 
       <h2 class="text-base font-bold leading-6 text-zinc-800 mt-16 mb-8">Past Thoughts</h2>
