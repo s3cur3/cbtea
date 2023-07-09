@@ -47,7 +47,7 @@ defmodule Cbt.MixProject do
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:ex_cldr, "~> 2.37"},
       {:ex_cldr_dates_times, "~> 2.0"},
-      {:excoveralls, "~> 0.15.0", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.16.0", only: [:dev, :test], runtime: false},
       {:finch, "~> 0.13"},
       {:floki, ">= 0.30.0", only: :test},
       {:gettext, "~> 0.20"},
