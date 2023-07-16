@@ -1,4 +1,5 @@
 /_build
+/assets/node_modules
 /cover
 /deps
 /doc
