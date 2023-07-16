@@ -4,6 +4,7 @@
 /deps
 /doc
 /.fetch
+tmp/
 erl_crash.dump
 *.ez
 *.beam

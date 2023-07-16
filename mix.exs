@@ -60,6 +60,7 @@ defmodule Cbt.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.0"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
+      {:site_encrypt, "~> 0.5"},
       {:sobelow, "~> 0.11", only: :dev},
       {:swoosh, "~> 1.3"},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
