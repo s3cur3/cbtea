@@ -8,7 +8,7 @@ defmodule CbtWeb.UserRegistrationLiveTest do
     test "renders registration page", %{conn: conn} do
       {:ok, _lv, html} = live(conn, ~p"/users/register")
 
-      assert html =~ "Register"
+      assert html =~ "Create an account"
       assert html =~ "Log in"
     end
 
@@ -30,7 +30,7 @@ defmodule CbtWeb.UserRegistrationLiveTest do
         |> element("#registration_form")
         |> render_change(user: %{"email" => "with spaces", "password" => "2short"})
 
-      assert result =~ "Register"
+      assert result =~ "Create an account"
       assert result =~ "must have the @ sign and no spaces"
       assert result =~ "should be at least 8 character"
     end

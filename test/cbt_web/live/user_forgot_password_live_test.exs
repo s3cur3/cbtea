@@ -12,7 +12,7 @@ defmodule CbtWeb.UserForgotPasswordLiveTest do
       {:ok, lv, html} = live(conn, ~p"/users/reset_password")
 
       assert html =~ "Forgot your password?"
-      assert has_element?(lv, ~s|a[href="#{~p"/users/register"}"]|, "Register")
+      assert has_element?(lv, ~s|a[href="#{~p"/users/register"}"]|, "Create an account")
       assert has_element?(lv, ~s|a[href="#{~p"/users/log_in"}"]|, "Log in")
     end
 

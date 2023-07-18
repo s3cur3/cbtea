@@ -9,7 +9,7 @@ defmodule CbtWeb.UserLoginLiveTest do
       {:ok, _lv, html} = live(conn, ~p"/users/log_in")
 
       assert html =~ "Log in"
-      assert html =~ "Register"
+      assert html =~ "Create an account"
       assert html =~ "Forgot your password?"
     end
 
@@ -67,7 +67,7 @@ defmodule CbtWeb.UserLoginLiveTest do
         |> render_click()
         |> follow_redirect(conn, ~p"/users/register")
 
-      assert login_html =~ "Register"
+      assert login_html =~ "Create an account"
     end
 
     test "redirects to forgot password page when the Forgot Password button is clicked", %{
