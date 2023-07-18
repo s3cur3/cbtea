@@ -3,7 +3,7 @@ defmodule CbtWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+    assert html_response(conn, 200) =~ "CBTea provides an interface"
   end
 
   describe "as a logged in user" do
