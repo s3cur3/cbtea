@@ -65,6 +65,7 @@ defmodule CbtWeb.ThoughtsLive do
 
     {:ok,
      socket
+     |> assign(page_title: "Thoughts · CBTea · The Cognitive Behavioral Therapy App")
      |> assign_localization_params()
      |> stream(:thoughts, Thoughts.all_thoughts(user))}
   end
