@@ -1,32 +1,28 @@
-<div class="mx-auto max-w-xl lg:mx-0 py-6">
-  <header class="px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-      <div class="flex items-center gap-4">
-        <h1 class="bg-brand/10 text-brand rounded-full px-6 py-4 text-4xl font-medium">
-          CBTea 🍵
-        </h1>
-      </div>
+<div class="mx-auto max-w-xl py-6 px-4 mx-auto">
+  <header class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
+    <div class="flex items-center gap-4">
+      <h1 class="bg-brand/10 text-brand rounded-full px-6 py-4 text-4xl font-medium">
+        CBTea 🍵
+      </h1>
     </div>
   </header>
-  <main class="py-10">
-    <div class="mx-auto max-w-2xl">
-      <.flash_group flash={@flash} />
-      <h2 class="font-bold text-lg pb-4">A privacy-first cognitive behavioral therapy (CBT) app.</h2>
-      <p class="pb-4">
-        CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It's a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
-      </p>
-      <p class="pb-4">
-        CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud,
-        <a href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">soon</a>
-        with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
-      </p>
-      <p class="pb-4">
-        <strong>Warning</strong>: CBTea is pre-public beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach <a
-          href="https://github.com/s3cur3/cbtea/issues/2"
-          target="_blank"
-        >v1.0</a>, we'll guarantee your data's safety.
-      </p>
-    </div>
+  <main class="py-6 lg:py-10">
+    <.flash_group flash={@flash} />
+    <h2 class="font-bold text-lg pb-4">A privacy-first cognitive behavioral therapy (CBT) app.</h2>
+    <p class="pb-4">
+      CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It's a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
+    </p>
+    <p class="pb-4">
+      CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud,
+      <a href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">soon</a>
+      with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
+    </p>
+    <p class="pb-4">
+      <strong>Warning</strong>: CBTea is pre-public beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach <a
+        href="https://github.com/s3cur3/cbtea/issues/2"
+        target="_blank"
+      >v1.0</a>, we'll guarantee your data's safety.
+    </p>
   </main>
   <footer>
     <a href="https://github.com/s3cur3/cbtea" target="_blank">
