@@ -18,7 +18,7 @@ defmodule CbtWeb.UserSessionControllerTest do
       assert redirected_to(conn) == ~p"/thoughts"
 
       # Now do a logged in request and assert on the menu
-      conn = get(conn, ~p"/")
+      conn = get(conn, ~p"/thoughts")
       response = html_response(conn, 200)
       assert response =~ user.email
       assert response =~ ~p"/users/log_out"

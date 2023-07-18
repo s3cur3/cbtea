@@ -48,7 +48,7 @@ defmodule CbtWeb.UserRegistrationLiveTest do
       assert redirected_to(conn) == ~p"/thoughts"
 
       # Now do a logged in request and assert on the menu
-      conn = get(conn, "/")
+      conn = get(conn, ~p"/thoughts")
       response = html_response(conn, 200)
       assert response =~ email
       assert response =~ "Log out"
