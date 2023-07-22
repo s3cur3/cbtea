@@ -17,7 +17,7 @@ defmodule CbtWeb.NewThoughtLive do
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-md">
-      <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-target={@myself}>
+      <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-change="validate" phx-target={@myself}>
         <.input
           field={@form[:automatic_thought]}
           type="errorless-text"
@@ -49,6 +49,10 @@ defmodule CbtWeb.NewThoughtLive do
   end
 
   @impl Phoenix.LiveComponent
+  def handle_event("validate", %{"thought" => params}, socket) do
+    {:noreply, update_form(socket, params)}
+  end
+
   def handle_event("save", %{"thought" => thought_params}, socket) do
     user = current_user(socket)
 
@@ -63,11 +67,21 @@ defmodule CbtWeb.NewThoughtLive do
     end
   end
 
-  def assign_new_form_changeset(socket) do
+  defp assign_new_form_changeset(socket) do
     user = current_user(socket)
     changeset = Thoughts.new_thought_changeset(user)
     form = to_form(changeset)
     assign(socket, form: form)
+  end
+
+  defp update_form(socket, attrs) do
+    user = current_user(socket)
+
+    changeset =
+      Thoughts.new_thought_changeset(user, attrs)
+      |> Map.put(:action, :validate)
+
+    assign(socket, form: to_form(changeset))
   end
 
   def current_user(%{assigns: %{current_user: user}}), do: user

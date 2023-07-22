@@ -244,9 +244,11 @@ defmodule CbtWeb.CoreComponents do
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
 
   def distortion_select(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    %{distortion: distortion} = assigns
+
     assigns =
       assigns
-      |> assign_new(:checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", field.value) end)
+      |> assign_new(:checked, fn -> Enum.any?(field.value, &(&1.data.name == distortion.name)) end)
       |> assign(:name, field.name <> "[]")
 
     ~H"""
@@ -259,7 +261,7 @@ defmodule CbtWeb.CoreComponents do
       value={@distortion.name}
     />
     <label
-      class="hover:cursor-pointer width-full block px-3 py-2 border focus:ring-3 focus:ring-blue-300 rounded peer-checked:bg-multiselect/100 peer-checked:text-white"
+      class="hover:cursor-pointer width-full block px-3 py-2 overflow-hidden border focus:ring-3 focus:ring-blue-300 rounded peer-checked:bg-multiselect/100 peer-checked:text-white"
       for={@distortion.name}
     >
       <%= @distortion.emoji %>&nbsp; <%= @distortion.label %>
