@@ -265,6 +265,13 @@ defmodule CbtWeb.CoreComponents do
       for={@distortion.name}
     >
       <%= @distortion.emoji %>&nbsp; <%= @distortion.label %>
+      <div class={
+        if @checked,
+          do: "transition-all duration-500 max-h-20",
+          else: "transition-all duration-500 max-h-0 text-white"
+      }>
+        <%= @distortion.description %>
+      </div>
     </label>
     """
   end
