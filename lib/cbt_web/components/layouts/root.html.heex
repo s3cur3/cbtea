@@ -10,9 +10,9 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <ul class="relative z-10 flex items-center gap-4 p-4 sm:px-6 lg:px-8 justify-end">
+    <ul class="relative z-10 flex items-center gap-4 p-4 pb-0 sm:px-6 lg:px-8 justify-end">
       <%= if @current_user do %>
-        <li class="leading-6 text-zinc-900">
+        <li class="hidden md:block leading-6 text-zinc-900">
           <%= @current_user.email %>
         </li>
         <li>

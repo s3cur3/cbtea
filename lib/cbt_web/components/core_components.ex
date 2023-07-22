@@ -620,6 +620,53 @@ defmodule CbtWeb.CoreComponents do
   end
 
   @doc """
+  Renders an `<a>` tag styled for an inline link
+
+  ## Examples
+
+      <.text_link href={~p"/posts"}>Back to posts</.text_link>
+  """
+  attr :href, :string, required: true
+  attr :target, :string, required: false
+  slot :inner_block, required: true
+
+  def text_link(assigns) do
+    assigns =
+      assigns
+      |> assign_new(:target, fn -> nil end)
+      |> assign(:class, "text-brand underline hover:text-violet-500")
+
+    ~H"""
+    <.link navigate={@href} class={@class} target={@target}><%= render_slot(@inner_block) %></.link>
+    """
+  end
+
+  @doc """
+  Renders a big call-to-action button link.
+
+  ## Examples
+
+      <.button_link href={~p"/order"}>Buy now!</.button_link>
+  """
+  attr :href, :string, required: true
+  attr :target, :string, required: false
+  slot :inner_block, required: true
+
+  def button_link(assigns) do
+    assigns =
+      assigns
+      |> assign_new(:target, fn -> nil end)
+      |> assign(
+        :class,
+        "inline-block bg-brand hover:bg-violet-500 text-white font-bold py-2 px-4 rounded mr-6 mb-4"
+      )
+
+    ~H"""
+    <.link navigate={@href} class={@class} target={@target}><%= render_slot(@inner_block) %></.link>
+    """
+  end
+
+  @doc """
   Renders a [Heroicon](https://heroicons.com).
 
   Heroicons come in three styles – outline, solid, and mini.
