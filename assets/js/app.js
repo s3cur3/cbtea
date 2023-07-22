@@ -29,6 +29,19 @@ let liveSocket = new LiveSocket("/live", Socket, {
         locale: Intl.NumberFormat().resolvedOptions().locale,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         timezone_offset_mins: -(new Date().getTimezoneOffset()),
+    },
+    hooks: {
+      ScrollToAnchor: {
+        mounted() {
+          this.handleEvent("scrollTo", (obj) => {
+            const el = document.getElementById(obj.anchor);
+
+            if(el) {
+              el.scrollIntoView({behavior: "smooth"});
+            }
+          });
+        },
+      },
     }
 })
 

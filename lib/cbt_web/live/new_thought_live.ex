@@ -17,7 +17,14 @@ defmodule CbtWeb.NewThoughtLive do
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-md">
-      <.simple_form for={@form} id="new_thought_form" phx-submit="save" phx-change="validate" phx-target={@myself}>
+      <.simple_form
+        for={@form}
+        id="new_thought_form"
+        phx-submit="save"
+        phx-change="validate"
+        phx-target={@myself}
+        phx-hook="ScrollToAnchor"
+      >
         <.input
           field={@form[:automatic_thought]}
           type="errorless-text"
@@ -58,8 +65,10 @@ defmodule CbtWeb.NewThoughtLive do
 
     case Thoughts.create_thought(user, thought_params) do
       {:ok, _} ->
-        # TODO: Clear form
-        {:noreply, assign_new_form_changeset(socket)}
+        {:noreply,
+         socket
+         |> assign_new_form_changeset()
+         |> scroll_to_id("past-thoughts")}
 
       {:error, changeset} ->
         Logger.error("Error creating thought: #{inspect(changeset)}")
@@ -82,6 +91,10 @@ defmodule CbtWeb.NewThoughtLive do
       |> Map.put(:action, :validate)
 
     assign(socket, form: to_form(changeset))
+  end
+
+  defp scroll_to_id(socket, element_id) do
+    push_event(socket, "scrollTo", %{anchor: element_id})
   end
 
   def current_user(%{assigns: %{current_user: user}}), do: user

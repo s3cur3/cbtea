@@ -14,6 +14,7 @@ defmodule Cbt.MixProject do
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         check: :test,
+        "check.fast": :test,
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.html": :test,
@@ -84,6 +85,9 @@ defmodule Cbt.MixProject do
     [
       check: [
         "clean",
+        "check.fast"
+      ],
+      "check.fast": [
         "deps.unlock --check-unused",
         "compile --warnings-as-errors",
         "format --check-formatted",

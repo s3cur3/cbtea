@@ -1007,14 +1007,6 @@ select {
   height: 1.5rem;
 }
 
-.h-0 {
-  height: 0px;
-}
-
-.h-20 {
-  height: 5rem;
-}
-
 .max-h-0 {
   max-height: 0px;
 }
@@ -1113,6 +1105,14 @@ select {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+.scroll-mt-6 {
+  scroll-margin-top: 1.5rem;
+}
+
+.scroll-mt-20 {
+  scroll-margin-top: 5rem;
 }
 
 .items-center {
@@ -1594,16 +1594,8 @@ select {
   transition-duration: 300ms;
 }
 
-.duration-100 {
-  transition-duration: 100ms;
-}
-
 .duration-500 {
   transition-duration: 500ms;
-}
-
-.duration-1000 {
-  transition-duration: 1000ms;
 }
 
 .ease-in {
