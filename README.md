@@ -8,7 +8,7 @@ CBTea provides an interface for a common exercise in CBT: the automatic, negativ
 
 CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud, [soon][v1] with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
 
-**Warning**: CBTea is pre-public beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach [v1.0][v1], we'll guarantee your data's safety.
+**Warning**: CBTea is in beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach [v1.0][v1], we'll guarantee your data's safety.
 
 This codebase is an Elixir re-implementation of the GPL v3 [Quirk][] React Native app. There's a demo of it in action [on the Wayback Machine][QuirkDemo].
 

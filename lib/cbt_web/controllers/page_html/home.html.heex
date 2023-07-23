@@ -3,14 +3,14 @@
     <.flash_group flash={@flash} />
     <h2 class="font-bold text-lg mb-4">A privacy-first cognitive behavioral therapy (CBT) app.</h2>
     <p class="mb-4">
-      CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It's a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
+      CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It&rsquo;s a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
     </p>
     <div
       class="mx-auto my-12 overflow-hidden relative"
       style="width: 270px; border-radius: 12px; border-color: #101010; box-shadow: 0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111;"
     >
       <iframe
-        src="https://player.vimeo.com/video/847727595?badge=0&amp;autopause=0&amp;autoplay=1&amp;player_id=0&amp;app_id=58479"
+        src="https://player.vimeo.com/video/847727595?badge=0&amp;autopause=0&amp;autoplay=1&amp;loop=1&amp;player_id=0&amp;app_id=58479"
         width="270"
         height="481"
         frameborder="0"
@@ -22,22 +22,20 @@
     </div>
     <p class="pb-4">
       CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud,
-      <.text_link href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">
-        soon
-      </.text_link>
-      with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
+      <.text_link href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">soon</.text_link>
+      with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you&rsquo;ll even be able to use the app without creating an account or offline.
     </p>
     <p class="pb-4">
-      <strong>Warning</strong>: CBTea is pre-public beta right now. Please don't use it for anything important, and don't assume your data will be preserved. Once we reach
-      <.text_link href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">v1.0</.text_link>, we'll guarantee your data&rsquo;s storage over time.
+      <strong>Warning</strong>: CBTea is in beta right now. Please don&rsquo;t use it for anything important, and don&rsquo;t assume your data will be preserved. Once we reach
+      <.text_link href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">v1.0</.text_link>, we&rsquo;ll guarantee your data&rsquo;s storage over time.
     </p>
     <div>
       <.button_link href={~p"/users/register"}>Create&nbsp;an&nbsp;account</.button_link>
       <.button_link href={~p"/users/log_in"}>Log&nbsp;in</.button_link>
     </div>
   </main>
-  <footer>
-    <a href="https://github.com/s3cur3/cbtea" target="_blank">
+  <footer class="flex flex-row items-center">
+    <a href="https://github.com/s3cur3/cbtea" target="_blank" class="block mr-4">
       <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6">
         <path
           fill-rule="evenodd"
@@ -47,5 +45,6 @@
         />
       </svg>
     </a>
+    <.text_link href="https://github.com/s3cur3/cbtea/issues" target="_blank">File an issue</.text_link>
   </footer>
 </div>
