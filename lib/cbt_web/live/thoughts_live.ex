@@ -36,7 +36,7 @@ defmodule CbtWeb.ThoughtsLive do
 
   def thought(assigns) do
     ~H"""
-    <article class="border rounded p-4">
+    <article class="border rounded p-4 mb-4">
       <button
         class="float-right text-zinc-300 rounded focus:text-red-800 focus:outline-none focus:ring focus:ring-red-300"
         phx-click="delete_thought"
