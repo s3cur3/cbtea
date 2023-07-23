@@ -667,6 +667,83 @@ defmodule CbtWeb.CoreComponents do
   end
 
   @doc """
+  Renders the header used at the top of each page
+  """
+  attr :current_user, Cbt.Accounts.User, default: nil
+  attr :log_in, :string, required: true
+  attr :log_out, :string, required: true
+  attr :register, :string, required: true
+
+  def page_header(assigns) do
+    ~H"""
+    <.header_links
+      class="flex md:hidden"
+      current_user={@current_user}
+      log_out={@log_out}
+      register={@register}
+      log_in={@log_in}
+    />
+    <header class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
+      <div class="flex items-center gap-4 mt-2 ml-4 md:ml-6 lg:ml-8">
+        <h1 class="bg-brand/10 text-brand rounded-full px-5 py-3 text-3xl font-medium whitespace-nowrap">
+          CBTea 🍵
+        </h1>
+      </div>
+
+      <.header_links
+        class="hidden md:flex"
+        current_user={@current_user}
+        current_user={@current_user}
+        log_out={@log_out}
+        register={@register}
+        log_in={@log_in}
+      />
+    </header>
+    """
+  end
+
+  defp header_links(assigns) do
+    assigns =
+      assign(assigns,
+        class:
+          "#{assigns[:class]} relative z-10 items-center gap-4 p-4 pb-0 sm:px-6 lg:px-8 justify-end"
+      )
+
+    ~H"""
+    <ul class={@class}>
+      <%= if @current_user do %>
+        <li class="leading-6 text-zinc-900">
+          <%= @current_user.email %>
+        </li>
+        <li>
+          <.link
+            href={@log_out}
+            method="delete"
+            class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700 whitespace-nowrap"
+          >
+            Log out
+          </.link>
+        </li>
+      <% else %>
+        <li>
+          <.link
+            href={@register}
+            class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700 mr-2 lg:mr-4 whitespace-nowrap"
+          >
+            Create an account
+          </.link>
+        </li>
+        <li>
+          <.link href={@log_in} class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700 whitespace-nowrap">
+            Log in
+          </.link>
+        </li>
+      <% end %>
+    </ul>
+    """
+  end
+
+  @doc """
   Renders a [Heroicon](https://heroicons.com).
 
   Heroicons come in three styles – outline, solid, and mini.

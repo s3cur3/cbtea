@@ -1,11 +1,4 @@
 <div class="mx-auto max-w-xl py-2 px-4 mx-auto">
-  <header class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-    <div class="flex items-center gap-4">
-      <h1 class="bg-brand/10 text-brand rounded-full px-6 py-4 text-4xl font-medium">
-        CBTea 🍵
-      </h1>
-    </div>
-  </header>
   <main class="py-10 lg:py-10">
     <.flash_group flash={@flash} />
     <h2 class="font-bold text-lg pb-4">A privacy-first cognitive behavioral therapy (CBT) app.</h2>
@@ -24,7 +17,7 @@
       <.text_link href="https://github.com/s3cur3/cbtea/issues/2" target="_blank">v1.0</.text_link>, we'll guarantee your data&rsquo;s storage over time.
     </p>
     <div>
-        <.button_link href={~p"/users/register"}>Create&nbsp;an&nbsp;account</.button_link>
+      <.button_link href={~p"/users/register"}>Create&nbsp;an&nbsp;account</.button_link>
       <.button_link href={~p"/users/log_in"}>Log&nbsp;in</.button_link>
     </div>
   </main>

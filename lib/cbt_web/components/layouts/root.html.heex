@@ -10,36 +10,12 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <ul class="relative z-10 flex items-center gap-4 p-4 pb-0 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_user do %>
-        <li class="hidden md:block leading-6 text-zinc-900">
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_out"}
-            method="delete"
-            class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log out
-          </.link>
-        </li>
-      <% else %>
-        <li>
-          <.link
-            href={~p"/users/register"}
-            class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700 mr-2 lg:mr-4"
-          >
-            Create an account
-          </.link>
-        </li>
-        <li>
-          <.link href={~p"/users/log_in"} class="leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
-            Log in
-          </.link>
-        </li>
-      <% end %>
-    </ul>
+    <.page_header
+      current_user={@current_user}
+      log_out={~p"/users/log_out"}
+      register={~p"/users/register"}
+      log_in={~p"/users/log_in"}
+    />
     <%= @inner_content %>
   </body>
 </html>
