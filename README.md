@@ -4,6 +4,8 @@
 
 **A privacy-first cognitive behavioral therapy (CBT) app.**
 
+https://github.com/s3cur3/cbtea/assets/803680/a73fcac1-766c-42e1-a15b-266a72b0f9c2
+
 CBTea provides an interface for a common exercise in CBT: the automatic, negative thought record. It's a way to help you identify and challenge negative thoughts, with the ultimate goal of changing your thinking patterns and helping you feel better.
 
 CBTea is designed with privacy as the foremost concern. Your data is stored securely in the cloud, [soon][v1] with end-to-end encryption. There is absolutely zero tracking, analytics, or other data collection. In the future, you'll even be able to use the app without creating an account or offline.
