@@ -11,12 +11,22 @@ defmodule CbtWeb.ThoughtsLive do
     <div class="mx-auto max-w-md">
       <.live_component module={CbtWeb.NewThoughtLive} id="new-thought-form" current_user={@current_user} />
 
-      <h2 class="text-base font-bold leading-6 text-zinc-800 mt-16 mb-8 scroll-mt-20" id="past-thoughts">Past Thoughts</h2>
-      <div id="thoughts" phx-update="stream" class="space-y-12">
-        <div :for={{dom_id, %Thought{} = thought} <- @streams.thoughts} id={dom_id}>
-          <.thought thought={thought} i18n={@i18n} />
-        </div>
+      <h2 class="text-base font-bold leading-6 text-zinc-800 mt-16 mb-4 md:mb-8 scroll-mt-20" id="past-thoughts">
+        Past Thoughts
+      </h2>
+      <div id="thoughts" phx-update="stream" class="space-y-12 peer"><.thoughts streams={@streams} i18n={@i18n} /></div>
+      <div class="hidden peer-empty:block text-zinc-500 text-center rounded border py-4">
+        <p>No thoughts here yet.</p>
+        <p>Log one above! 😄</p>
       </div>
+    </div>
+    """
+  end
+
+  defp thoughts(assigns) do
+    ~H"""
+    <div :for={{dom_id, %Thought{} = thought} <- @streams.thoughts} id={dom_id}>
+      <.thought thought={thought} i18n={@i18n} />
     </div>
     """
   end

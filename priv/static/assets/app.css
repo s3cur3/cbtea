@@ -1547,6 +1547,11 @@ select {
   color: rgb(24 24 27 / var(--tw-text-opacity));
 }
 
+.text-zinc-400 {
+  --tw-text-opacity: 1;
+  color: rgb(161 161 170 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1804,6 +1809,10 @@ select {
   display: none;
 }
 
+.peer:empty ~ .peer-empty\:block {
+  display: block;
+}
+
 .phx-no-feedback.phx-no-feedback\:hidden {
   display: none;
 }
@@ -1919,6 +1928,10 @@ select {
 
   .md\:ml-6 {
     margin-left: 1.5rem;
+  }
+
+  .md\:mb-8 {
+    margin-bottom: 2rem;
   }
 
   .md\:block {
