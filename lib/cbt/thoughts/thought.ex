@@ -1,5 +1,4 @@
 defmodule Cbt.Thoughts.Thought do
-  use Ecto.Schema
   use TypedEctoSchema
   import Ecto.Changeset
   alias Cbt.Distortions.Distortion
