@@ -20,7 +20,7 @@ jobs:
     # Remove if you don't need a database
     services:
       db:
-        image: postgis/postgis:13-3.1
+        image: postgres/postgres:14.9
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
