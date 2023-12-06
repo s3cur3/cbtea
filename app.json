@@ -3,5 +3,16 @@
     "dokku": {
       "postdeploy": "mix setup"
     }
+  },
+  "healthchecks": {
+    "web": [
+      {
+        "type":        "startup",
+        "name":        "web check",
+        "description": "Checking if the app responds to the root endpoint",
+        "path":        "/",
+        "attempts": 3
+      }
+    ]
   }
 }
