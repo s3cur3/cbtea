@@ -61,7 +61,7 @@ defmodule Cbt.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.0"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
-      {:quokka, ">= 0.0.0", only: [:dev], runtime: false},
+      {:quokka, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:site_encrypt, git: "https://github.com/sasa1977/site_encrypt.git", commit: "main"},
       {:sobelow, "~> 0.11", only: :dev},
       {:swoosh, "~> 1.3"},

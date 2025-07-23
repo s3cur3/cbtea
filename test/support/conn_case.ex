@@ -20,6 +20,7 @@ defmodule CbtWeb.ConnCase do
   using do
     quote do
       use CbtWeb, :verified_routes
+
       import CbtWeb.ConnCase
       import Phoenix.ConnTest
       import Plug.Conn

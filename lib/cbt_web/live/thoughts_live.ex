@@ -46,24 +46,24 @@ defmodule CbtWeb.ThoughtsLive do
         <.icon name="hero-trash" class="hover:text-red-800 active:text-red-800" />
       </button>
       <div class="font-light font-xl italic border-l-2 border-brand pl-2">
-        <%= @thought.automatic_thought %>
+        {@thought.automatic_thought}
       </div>
       <div :if={@thought.challenge != ""} class="mt-2">
-        <h3 class="font-bold text-zinc-800 inline">Challenge</h3>: <%= @thought.challenge %>
+        <h3 class="font-bold text-zinc-800 inline">Challenge</h3>: {@thought.challenge}
       </div>
       <div :if={@thought.alternative_thought != ""} class="mt-2">
-        <h3 class="font-bold text-zinc-800 inline">Alternative Thought</h3>: <%= @thought.alternative_thought %>
+        <h3 class="font-bold text-zinc-800 inline">Alternative Thought</h3>: {@thought.alternative_thought}
       </div>
       <div :if={@thought.distortions != []} class="my-2">
         <span
           :for={%Distortion{} = distortion <- @thought.distortions}
           class="rounded border px-3 py-2 mr-2 my-1 text-sm inline-block"
         >
-          <%= distortion.emoji %>&nbsp; <%= distortion.label %>
+          {distortion.emoji}&nbsp; {distortion.label}
         </span>
       </div>
       <div class="mt-2 text-sm text-zinc-600">
-        <%= I18n.format_datetime(@i18n, @thought.inserted_at) %>
+        {I18n.format_datetime(@i18n, @thought.inserted_at)}
       </div>
     </article>
     """

@@ -5,4 +5,6 @@
 #
 # More info in the Dialyxir README:
 # https://github.com/jeremyjh/dialyxir#elixir-term-format
-[]
+[
+  {"lib/cbt/accounts.ex", :call_without_opaque}
+]
