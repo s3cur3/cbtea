@@ -1,5 +1,6 @@
 defmodule Cbt.I18nTest do
   use Cbt.DataCase, async: true
+
   alias Cbt.I18n
 
   test "formats dates for French locale" do

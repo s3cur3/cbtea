@@ -1,5 +1,6 @@
 defmodule CbtWeb.ThoughtsLive do
   use CbtWeb, :live_view
+
   alias Cbt.Distortions.Distortion
   alias Cbt.I18n
   alias Cbt.Thoughts

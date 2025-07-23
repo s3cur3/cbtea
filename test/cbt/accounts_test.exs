@@ -1,9 +1,9 @@
 defmodule Cbt.AccountsTest do
   use Cbt.DataCase, async: true
 
-  alias Cbt.Accounts
-
   import Cbt.AccountsFixtures
+
+  alias Cbt.Accounts
   alias Cbt.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do

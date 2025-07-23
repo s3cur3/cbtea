@@ -4,9 +4,9 @@ defmodule Cbt.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias Cbt.Repo
 
   alias Cbt.Accounts.{User, UserToken, UserNotifier}
+  alias Cbt.Repo
 
   ## Database getters
 

@@ -1,6 +1,9 @@
 defmodule Cbt.Accounts.UserToken do
   use Ecto.Schema
+
   import Ecto.Query
+
+  alias Cbt.Accounts.User
   alias Cbt.Accounts.UserToken
 
   @hash_algorithm :sha256
@@ -17,7 +20,7 @@ defmodule Cbt.Accounts.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, Cbt.Accounts.User
+    belongs_to :user, User
 
     timestamps(updated_at: false)
   end

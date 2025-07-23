@@ -1,6 +1,9 @@
 defmodule CbtWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :cbt
-  use SiteEncrypt.Phoenix
+  use SiteEncrypt.Phoenix.Endpoint, otp_app: :cbt
+
+  alias Phoenix.Ecto.CheckRepoStatus
+  alias Phoenix.LiveDashboard.RequestLogger
+  alias Phoenix.LiveView.Socket
 
   plug SiteEncrypt.AcmeChallenge, __MODULE__
 
@@ -14,7 +17,7 @@ defmodule CbtWeb.Endpoint do
     same_site: "Lax"
   ]
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket "/live", Socket, websocket: [connect_info: [session: @session_options]]
 
   if Mix.env() == :prod do
     plug CbtWeb.RedirectToWwwPlug
@@ -36,10 +39,10 @@ defmodule CbtWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :cbt
+    plug CheckRepoStatus, otp_app: :cbt
   end
 
-  plug Phoenix.LiveDashboard.RequestLogger,
+  plug RequestLogger,
     param_key: "request_logger",
     cookie_key: "request_logger"
 
@@ -55,12 +58,6 @@ defmodule CbtWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug CbtWeb.Router
-
-  @impl Phoenix.Endpoint
-  def init(_key, config) do
-    # this will merge key, cert, and chain into `:https` configuration from config.exs
-    {:ok, SiteEncrypt.Phoenix.configure_https(config)}
-  end
 
   @impl SiteEncrypt
   def certification do

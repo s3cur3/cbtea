@@ -1,8 +1,10 @@
 defmodule CbtWeb.NewThoughtLive do
-  require Logger
   use CbtWeb, :live_component
+
   alias Cbt.Accounts.User
   alias Cbt.Thoughts
+
+  require Logger
 
   @impl Phoenix.LiveComponent
   def update(assigns, socket) do

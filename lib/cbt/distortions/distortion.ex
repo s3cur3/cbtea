@@ -1,6 +1,7 @@
 defmodule Cbt.Distortions.Distortion do
   use Ecto.Schema
   use TypedEctoSchema
+
   import Ecto.Changeset
 
   typed_schema "distortions" do

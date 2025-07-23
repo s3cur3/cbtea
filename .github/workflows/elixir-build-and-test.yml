@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MIX_ENV: test
-      elixir: "1.14.4"
-      otp: "25.1.2"
+      elixir: "1.18.4"
+      otp: "27.3.4.2"
 
     # Remove if you don't need a database
     services:

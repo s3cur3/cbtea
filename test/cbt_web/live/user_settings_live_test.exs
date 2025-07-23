@@ -1,9 +1,10 @@
 defmodule CbtWeb.UserSettingsLiveTest do
   use CbtWeb.ConnCase, async: true
 
-  alias Cbt.Accounts
-  import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
+  import Phoenix.LiveViewTest
+
+  alias Cbt.Accounts
 
   describe "Settings page" do
     test "renders settings page", %{conn: conn} do

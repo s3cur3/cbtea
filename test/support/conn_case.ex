@@ -19,15 +19,14 @@ defmodule CbtWeb.ConnCase do
 
   using do
     quote do
+      use CbtWeb, :verified_routes
+      import CbtWeb.ConnCase
+      import Phoenix.ConnTest
+      import Plug.Conn
       # The default endpoint for testing
       @endpoint CbtWeb.Endpoint
 
-      use CbtWeb, :verified_routes
-
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-      import CbtWeb.ConnCase
     end
   end
 

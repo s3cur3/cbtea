@@ -1,10 +1,12 @@
 defmodule CbtWeb.UserAuthTest do
   use CbtWeb.ConnCase, async: true
 
-  alias Phoenix.LiveView
+  import Cbt.AccountsFixtures
+
   alias Cbt.Accounts
   alias CbtWeb.UserAuth
-  import Cbt.AccountsFixtures
+  alias Phoenix.LiveView
+  alias Phoenix.Socket.Broadcast
 
   @remember_me_cookie "_cbt_web_user_remember_me"
 
@@ -72,7 +74,7 @@ defmodule CbtWeb.UserAuthTest do
       |> put_session(:live_socket_id, live_socket_id)
       |> UserAuth.log_out_user()
 
-      assert_receive %Phoenix.Socket.Broadcast{event: "disconnect", topic: ^live_socket_id}
+      assert_receive %Broadcast{event: "disconnect", topic: ^live_socket_id}
     end
 
     test "works even if user is already logged out", %{conn: conn} do

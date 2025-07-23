@@ -1,5 +1,6 @@
 defmodule CbtWeb.ThoughtsLiveTest do
   use CbtWeb.ConnCase, async: true
+
   import Phoenix.LiveViewTest
 
   setup :register_and_log_in_user

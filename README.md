@@ -17,3 +17,9 @@ This codebase is an Elixir re-implementation of the GPL v3 [Quirk][] React Nativ
 [v1]: https://github.com/s3cur3/cbtea/issues/2
 [Quirk]: https://github.com/Flaque/quirk
 [QuirkDemo]: https://web.archive.org/web/20191226140443/https://www.quirk.fyi/
+
+## Development
+
+1. Install Postgres (`brew install postgresql@17 && brew services start postgresql@17`)
+2. Set up all our dependencies (`mix setup`)
+3. Run the tests (`mix test`)

@@ -1,8 +1,8 @@
 defmodule CbtWeb.UserResetPasswordLiveTest do
   use CbtWeb.ConnCase, async: true
 
-  import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
+  import Phoenix.LiveViewTest
 
   alias Cbt.Accounts
 

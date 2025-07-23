@@ -1,5 +1,6 @@
 defmodule Cbt.ThoughtsTest do
   use Cbt.DataCase, async: true
+
   alias Cbt.Thoughts
   alias Cbt.Thoughts.Thought
 

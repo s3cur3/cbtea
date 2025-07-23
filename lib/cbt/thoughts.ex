@@ -1,8 +1,9 @@
 defmodule Cbt.Thoughts do
   import Ecto.Query
+
   alias Cbt.Accounts.User
-  alias Cbt.Thoughts.Thought
   alias Cbt.Repo
+  alias Cbt.Thoughts.Thought
 
   @spec create_thought(User.t() | Repo.id(), map) ::
           {:ok, Thought.t()} | {:error, Ecto.Changeset.t()}

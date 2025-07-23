@@ -23,10 +23,11 @@ defmodule CbtWeb do
     quote do
       use Phoenix.Router, helpers: false
 
-      # Import common connection and controller functions to use in pipelines
-      import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
+
+      # Import common connection and controller functions to use in pipelines
+      import Plug.Conn
     end
   end
 
@@ -42,8 +43,9 @@ defmodule CbtWeb do
         formats: [:html, :json],
         layouts: [html: CbtWeb.Layouts]
 
+      use Gettext, backend: CbtWeb.Gettext
+
       import Plug.Conn
-      import CbtWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -81,11 +83,12 @@ defmodule CbtWeb do
 
   defp html_helpers do
     quote do
+      use Gettext, backend: CbtWeb.Gettext
+
+      import CbtWeb.CoreComponents
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import CbtWeb.CoreComponents
-      import CbtWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

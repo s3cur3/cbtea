@@ -18,12 +18,12 @@ defmodule Cbt.DataCase do
 
   using do
     quote do
-      alias Cbt.Repo
-
+      import Cbt.DataCase
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Cbt.DataCase
+
+      alias Cbt.Repo
     end
   end
 

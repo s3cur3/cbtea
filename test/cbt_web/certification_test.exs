@@ -1,5 +1,6 @@
 defmodule CbtWeb.Endpoint.CertificationTest do
   use ExUnit.Case, async: false
+
   import SiteEncrypt.Phoenix.Test
 
   @tag server_only: true

@@ -1,8 +1,8 @@
 defmodule CbtWeb.UserConfirmationInstructionsLiveTest do
   use CbtWeb.ConnCase, async: true
 
-  import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
+  import Phoenix.LiveViewTest
 
   alias Cbt.Accounts
   alias Cbt.Repo

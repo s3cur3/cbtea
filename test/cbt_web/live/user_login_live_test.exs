@@ -1,8 +1,8 @@
 defmodule CbtWeb.UserLoginLiveTest do
   use CbtWeb.ConnCase, async: true
 
-  import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
+  import Phoenix.LiveViewTest
 
   describe "Log in page" do
     test "renders log in page", %{conn: conn} do

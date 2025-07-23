@@ -7,8 +7,16 @@
 # General application configuration
 import Config
 
-config :cbt,
-  ecto_repos: [Cbt.Repo]
+alias Swoosh.Adapters.Local
+
+# Configures the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :cbt, Cbt.Mailer, adapter: Local
 
 # Configures the endpoint
 config :cbt, CbtWeb.Endpoint,
@@ -20,14 +28,8 @@ config :cbt, CbtWeb.Endpoint,
   pubsub_server: Cbt.PubSub,
   live_view: [signing_salt: "M/HEKK59"]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :cbt, Cbt.Mailer, adapter: Swoosh.Adapters.Local
+config :cbt,
+  ecto_repos: [Cbt.Repo]
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -39,9 +41,17 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
+# Configures Elixir's Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, JSON
+
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.2.7",
+  version: "3.4.17",
   default: [
     args: ~w(
       --config=tailwind.config.js
@@ -51,13 +61,7 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
+config :phoenix, :stacktrace_depth, 20
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

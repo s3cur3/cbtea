@@ -1,6 +1,9 @@
 defmodule Cbt.Thoughts.Thought do
   use TypedEctoSchema
+
   import Ecto.Changeset
+
+  alias Cbt.Accounts.User
   alias Cbt.Distortions.Distortion
   alias Cbt.Utils
 
@@ -13,7 +16,7 @@ defmodule Cbt.Thoughts.Thought do
       join_through: "thoughts_distortions",
       on_replace: :delete
 
-    belongs_to :user, Cbt.Accounts.User, null: false
+    belongs_to :user, User, null: false
 
     timestamps()
   end

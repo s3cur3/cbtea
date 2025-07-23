@@ -1,8 +1,8 @@
 defmodule CbtWeb.UserAuth do
   use CbtWeb, :verified_routes
 
-  import Plug.Conn
   import Phoenix.Controller
+  import Plug.Conn
 
   alias Cbt.Accounts
 

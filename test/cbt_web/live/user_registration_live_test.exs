@@ -1,8 +1,8 @@
 defmodule CbtWeb.UserRegistrationLiveTest do
   use CbtWeb.ConnCase, async: true
 
-  import Phoenix.LiveViewTest
   import Cbt.AccountsFixtures
+  import Phoenix.LiveViewTest
 
   describe "Registration page" do
     test "renders registration page", %{conn: conn} do

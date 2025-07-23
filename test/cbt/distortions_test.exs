@@ -1,5 +1,6 @@
 defmodule Cbt.DistortionsTest do
   use Cbt.DataCase, async: true
+
   alias Cbt.Distortions
   alias Cbt.Distortions.Distortion
 

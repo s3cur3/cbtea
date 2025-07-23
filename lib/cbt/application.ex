@@ -17,7 +17,7 @@ defmodule Cbt.Application do
       # Start Finch
       {Finch, name: Cbt.Finch},
       # Start the Endpoint (http/https)
-      {SiteEncrypt.Phoenix, CbtWeb.Endpoint}
+      CbtWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

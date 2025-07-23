@@ -9,7 +9,8 @@
     :union_typespec
   ],
   plugins: [
-    Phoenix.LiveView.HTMLFormatter
+    Phoenix.LiveView.HTMLFormatter,
+    Quokka
   ],
   inputs: ["*.{ex,exs}", "priv/*/seeds.exs", "{config,lib,test}/**/*.{ex,exs,heex}"],
   subdirectories: ["priv/*/migrations", "priv/repo/data_migrations"]
