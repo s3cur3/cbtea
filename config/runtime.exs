@@ -67,14 +67,6 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    https: [
-      compress: true,
-      port: port + 1,
-      cipher_suite: :strong,
-      secure_renegotiate: true,
-      reuse_sessions: true,
-      log_level: :warning
-    ],
     secret_key_base: secret_key_base
 
   # ## Configuring the mailer
