@@ -65,7 +65,7 @@ defmodule CbtWeb.Endpoint do
       # Note that native client is very immature. If you want a more stable behaviour, you can
       # provide `:certbot` instead. Note that in this case certbot needs to be installed on the
       # host machine.
-      client: :certbot,
+      client: :native,
       domains: ["cbtea.app", "www.cbtea.app"],
       emails: ["tyler+certbot@tylerayoung.com"],
 
