@@ -46,8 +46,9 @@ defmodule CbtWeb.UserSettingsLiveTest do
         })
         |> render_submit()
 
-      assert result =~ "A link to confirm your email"
-      assert Accounts.get_user_by_email(user.email)
+      assert result =~ "Email updated successfully"
+      refute Accounts.get_user_by_email(user.email)
+      assert Accounts.get_user_by_email(new_email)
     end
 
     test "renders errors with invalid data (phx-change)", %{conn: conn} do
@@ -63,7 +64,7 @@ defmodule CbtWeb.UserSettingsLiveTest do
         })
 
       assert result =~ "Change Email"
-      assert result =~ "must have the @ sign and no spaces"
+      assert result =~ "must not have any spaces"
     end
 
     test "renders errors with invalid data (phx-submit)", %{conn: conn, user: user} do
@@ -156,56 +157,6 @@ defmodule CbtWeb.UserSettingsLiveTest do
       assert result =~ "should be at least 8 character(s)"
       assert result =~ "does not match password"
       assert result =~ "is not valid"
-    end
-  end
-
-  describe "confirm email" do
-    setup %{conn: conn} do
-      user = user_fixture()
-      email = unique_user_email()
-
-      token =
-        extract_user_token(fn url ->
-          Accounts.deliver_user_update_email_instructions(%{user | email: email}, user.email, url)
-        end)
-
-      %{conn: log_in_user(conn, user), token: token, email: email, user: user}
-    end
-
-    test "updates the user email once", %{conn: conn, user: user, token: token, email: email} do
-      {:error, redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
-
-      assert {:live_redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/settings"
-      assert %{"info" => message} = flash
-      assert message == "Email changed successfully."
-      refute Accounts.get_user_by_email(user.email)
-      assert Accounts.get_user_by_email(email)
-
-      # use confirm token again
-      {:error, redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
-      assert {:live_redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/settings"
-      assert %{"error" => message} = flash
-      assert message == "Email change link is invalid or it has expired."
-    end
-
-    test "does not update email with invalid token", %{conn: conn, user: user} do
-      {:error, redirect} = live(conn, ~p"/users/settings/confirm_email/oops")
-      assert {:live_redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/settings"
-      assert %{"error" => message} = flash
-      assert message == "Email change link is invalid or it has expired."
-      assert Accounts.get_user_by_email(user.email)
-    end
-
-    test "redirects if user is not logged in", %{token: token} do
-      conn = build_conn()
-      {:error, redirect} = live(conn, ~p"/users/settings/confirm_email/#{token}")
-      assert {:redirect, %{to: path, flash: flash}} = redirect
-      assert path == ~p"/users/log_in"
-      assert %{"error" => message} = flash
-      assert message == "You must log in to access this page."
     end
   end
 end

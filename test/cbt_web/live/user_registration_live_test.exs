@@ -31,7 +31,7 @@ defmodule CbtWeb.UserRegistrationLiveTest do
         |> render_change(user: %{"email" => "with spaces", "password" => "2short"})
 
       assert result =~ "Create an account"
-      assert result =~ "must have the @ sign and no spaces"
+      assert result =~ "must not have any spaces"
       assert result =~ "should be at least 8 character"
     end
   end
