@@ -13,5 +13,10 @@
     Quokka
   ],
   inputs: ["*.{ex,exs}", "priv/*/seeds.exs", "{config,lib,test}/**/*.{ex,exs,heex}"],
-  subdirectories: ["priv/*/migrations", "priv/repo/data_migrations"]
+  subdirectories: ["priv/*/migrations", "priv/repo/data_migrations"],
+  quokka: [
+    files: %{
+      excluded: ["lib/cbt/cldr.ex"]
+    }
+  ]
 ]

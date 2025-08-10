@@ -7,7 +7,8 @@ defmodule Cbt.Cldr do
   to functions on this module.
   """
   use Cldr,
-    locales: ["en", "fr", "de", "es", "ja", "zh"],
+    locales:
+      if(Mix.env() in [:dev, :test], do: ["en", "fr"], else: ["en", "fr", "de", "es", "ja", "zh"]),
     default_locale: "en",
     providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime]
 end
