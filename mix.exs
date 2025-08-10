@@ -59,6 +59,7 @@ defmodule Cbt.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.0"},
       {:phoenix_live_dashboard, "~> 0.8.0"},
+      {:phoenix_test, "~> 0.7", only: :test, runtime: false},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:quokka, ">= 0.0.0", only: [:dev, :test], runtime: false},

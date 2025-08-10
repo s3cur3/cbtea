@@ -29,22 +29,24 @@ defmodule CbtWeb.NewThoughtLive do
       >
         <.input
           field={@form[:automatic_thought]}
+          id="automatic-thought"
           type="errorless-text"
-          label="Automatic Thought"
+          label="Automatic thought"
           placeholder="What’s going on?"
           class="peer"
         />
 
         <div class="space-y-8 peer-placeholder-shown:hidden">
           <div class="space-y-2">
-            <.label for="cognitive-distortions">Cognitive Distortion</.label>
+            <.label for="cognitive-distortions">Cognitive distortion</.label>
             <div :for={distortion <- Cbt.Distortions.all_distortions()}>
               <.distortion_select field={@form[:distortions]} distortion={distortion} />
             </div>
           </div>
 
           <.input field={@form[:challenge]} type="text" label="Challenge" />
-          <.input field={@form[:alternative_thought]} type="text" label="Alternative Thought" />
+
+          <.input field={@form[:alternative_thought]} type="text" label="Alternative thought" />
         </div>
 
         <:actions>

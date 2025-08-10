@@ -23,6 +23,7 @@ defmodule CbtWeb.ConnCase do
 
       import CbtWeb.ConnCase
       import Phoenix.ConnTest
+      import PhoenixTest
       import Plug.Conn
       # The default endpoint for testing
       @endpoint CbtWeb.Endpoint
