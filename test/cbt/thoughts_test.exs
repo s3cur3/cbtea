@@ -37,6 +37,18 @@ defmodule Cbt.ThoughtsTest do
     assert Enum.any?(thought.distortions, &(&1.name == "overgeneralization"))
   end
 
+  test "can backdate the thought", %{user: user} do
+    assert {:ok, thought} = Thoughts.create_thought(user, %{inserted_at: ~N[2025-01-01 00:00:00]})
+    assert thought.inserted_at == ~N[2025-01-01 00:00:00]
+  end
+
+  test "cannot forward date a thought", %{user: user} do
+    assert {:error, changeset} =
+             Thoughts.create_thought(user, %{inserted_at: ~N[3025-01-01 00:00:00]})
+
+    assert changeset.errors == [inserted_at: {"must be in the past", []}]
+  end
+
   test "can delete your own thoughts", %{user: user} do
     assert {:ok, thought} = Thoughts.create_thought(user)
     assert {:ok, _} = Thoughts.delete_thought(thought, user)

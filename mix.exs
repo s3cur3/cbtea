@@ -43,6 +43,7 @@ defmodule Cbt.MixProject do
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.2", only: [:dev, :test], runtime: false},
+      {:date_time_parser, "~> 1.2"},
       {:ecto_enum_migration, "~> 0.3"},
       {:ecto_sql, "~> 3.10"},
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
