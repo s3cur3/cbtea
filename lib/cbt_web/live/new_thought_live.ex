@@ -31,6 +31,7 @@ defmodule CbtWeb.NewThoughtLive do
         <.input
           field={@form[:automatic_thought]}
           id="automatic-thought"
+          autofocus
           type="errorless-text"
           label="Automatic thought"
           placeholder="What's going on?"
