@@ -6,6 +6,8 @@ defmodule CbtWeb.ThoughtsLive do
   alias Cbt.Thoughts
   alias Cbt.Thoughts.Thought
 
+  require Logger
+
   @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
@@ -107,8 +109,9 @@ defmodule CbtWeb.ThoughtsLive do
     {:noreply, stream_delete(socket, :thoughts, thought)}
   end
 
-  def handle_info({:journal_entry_deleted, entry}, socket) do
-    {:noreply, stream_delete(socket, :journal_entries, entry)}
+  def handle_info(message, socket) do
+    Logger.debug("Ignoring unhandled message: #{inspect(message)}")
+    {:noreply, socket}
   end
 
   def current_user(%{assigns: %{current_user: user}}), do: user

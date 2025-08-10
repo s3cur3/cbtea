@@ -32,7 +32,14 @@ defmodule Cbt.Journal do
   def delete_entry(entry_or_id, %User{} = user), do: delete_entry(entry_or_id, user.id)
 
   def delete_entry(%Entry{user_id: user_id} = entry, user_id) do
-    Repo.delete(entry)
+    case Repo.delete(entry) do
+      {:ok, deleted_entry} ->
+        CbtWeb.PubSub.broadcast_journal_entry_deletion(deleted_entry)
+        {:ok, deleted_entry}
+
+      error ->
+        error
+    end
   end
 
   def delete_entry(id, user) when is_integer(id) do
@@ -50,7 +57,7 @@ defmodule Cbt.Journal do
 
     from(e in Entry,
       where: e.user_id == ^user_id,
-      order_by: [desc: :entry_date]
+      order_by: [desc: :inserted_at]
     )
     |> Repo.all()
   end

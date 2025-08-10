@@ -22,6 +22,11 @@ config :cbt, CbtWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ],
+  notify: [
+    live_view: [
+      ~r"lib/cbt_web/components/.*(ex|heex)$"
+    ]
+  ],
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

@@ -17,6 +17,11 @@ defmodule CbtWeb.CoreComponents do
   use Phoenix.Component
   use Gettext, backend: CbtWeb.Gettext
 
+  use Phoenix.VerifiedRoutes,
+    endpoint: CbtWeb.Endpoint,
+    router: CbtWeb.Router,
+    statics: CbtWeb.static_paths()
+
   alias Cbt.Accounts.User
   alias Cbt.Distortions.Distortion
   alias Phoenix.HTML.Form
@@ -678,6 +683,7 @@ defmodule CbtWeb.CoreComponents do
   attr :log_in, :string, required: true
   attr :log_out, :string, required: true
   attr :register, :string, required: true
+  attr :current_uri, :string, default: ""
 
   def page_header(assigns) do
     ~H"""
@@ -689,11 +695,28 @@ defmodule CbtWeb.CoreComponents do
       log_in={@log_in}
     />
     <header class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-      <div class="flex items-center gap-4 mt-2 ml-4 md:ml-6 lg:ml-8">
-        <h1 class="bg-brand/10 text-brand rounded-full px-5 py-3 text-3xl font-medium whitespace-nowrap">
-          CBTea 🍵
-        </h1>
+      <div class="flex items-center gap-4 ml-4 md:ml-6 lg:ml-8">
+        <.link href={~p"/"} class="hover:opacity-80">
+          <h1 class="bg-brand/10 text-brand rounded-full px-5 py-3 text-3xl font-medium whitespace-nowrap">
+            CBTea 🍵
+          </h1>
+        </.link>
       </div>
+
+      <nav class="flex gap-4 mr-4 md:mr-6 lg:mr-8">
+        <.link
+          patch={~p"/thoughts"}
+          class={"font-semibold whitespace-nowrap #{if @current_uri == "/thoughts", do: "text-brand", else: "text-zinc-900 hover:text-zinc-700"}"}
+        >
+          Thoughts
+        </.link>
+        <.link
+          patch={~p"/journal"}
+          class={"font-semibold whitespace-nowrap #{if @current_uri == "/journal", do: "text-brand", else: "text-zinc-900 hover:text-zinc-700"}"}
+        >
+          Journal
+        </.link>
+      </nav>
 
       <.header_links
         class="hidden md:flex"
@@ -710,7 +733,7 @@ defmodule CbtWeb.CoreComponents do
     assigns =
       assign(assigns,
         class:
-          "#{assigns[:class]} relative z-10 items-center gap-4 p-4 pb-0 sm:px-6 lg:px-8 justify-end"
+          "#{assigns[:class]} relative z-10 items-center gap-4 p-4 pb-0 sm:py-0 sm:px-6 lg:px-8 justify-end"
       )
 
     ~H"""

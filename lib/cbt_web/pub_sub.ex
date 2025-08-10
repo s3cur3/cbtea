@@ -1,5 +1,6 @@
 defmodule CbtWeb.PubSub do
   alias Cbt.Accounts.User
+  alias Cbt.Journal.Entry
   alias Cbt.Repo
   alias Cbt.Thoughts.Thought
 
@@ -7,6 +8,12 @@ defmodule CbtWeb.PubSub do
 
   @spec subscribe_user_thoughts(User.t() | Repo.id()) :: any()
   def subscribe_user_thoughts(user_or_id) do
+    topic = user_topic(user_or_id)
+    Phoenix.PubSub.subscribe(@pubsub_name, topic)
+  end
+
+  @spec subscribe_user_journal_entries(User.t() | Repo.id()) :: any()
+  def subscribe_user_journal_entries(user_or_id) do
     topic = user_topic(user_or_id)
     Phoenix.PubSub.subscribe(@pubsub_name, topic)
   end
@@ -20,7 +27,7 @@ defmodule CbtWeb.PubSub do
     )
   end
 
-  @spec broadcast_journal_entry(Thought.t()) :: any()
+  @spec broadcast_journal_entry(Entry.t()) :: any()
   def broadcast_journal_entry(entry) do
     Phoenix.PubSub.broadcast(
       @pubsub_name,
@@ -35,6 +42,15 @@ defmodule CbtWeb.PubSub do
       @pubsub_name,
       user_topic(thought.user_id),
       {:thought_deleted, thought}
+    )
+  end
+
+  @spec broadcast_journal_entry_deletion(Entry.t()) :: any()
+  def broadcast_journal_entry_deletion(entry) do
+    Phoenix.PubSub.broadcast(
+      @pubsub_name,
+      user_topic(entry.user_id),
+      {:journal_entry_deleted, entry}
     )
   end
 

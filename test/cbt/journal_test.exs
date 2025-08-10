@@ -17,25 +17,25 @@ defmodule Cbt.JournalTest do
 
   describe "journal entries" do
     test "create_entry/2 with valid data creates a journal entry", %{user: user} do
-      attrs = %{notes: "Great day today!", mood_rating: 4, entry_date: ~N[2024-01-01 12:00:00]}
+      attrs = %{notes: "Great day today!", mood_rating: 4, inserted_at: ~N[2024-01-01 12:00:00]}
 
       assert {:ok, %Entry{} = entry} = Journal.create_entry(user, attrs)
       assert entry.notes == "Great day today!"
       assert entry.mood_rating == 4
-      assert entry.entry_date == ~N[2024-01-01 12:00:00]
+      assert entry.inserted_at == ~N[2024-01-01 12:00:00]
       assert entry.user_id == user.id
     end
 
     test "create_entry/2 with invalid mood rating returns error changeset", %{user: user} do
       for invalid <- [nil, -1, 5] do
-        attrs = %{notes: "Bad day", mood_rating: invalid, entry_date: ~N[2024-01-01 12:00:00]}
+        attrs = %{notes: "Bad day", mood_rating: invalid, inserted_at: ~N[2024-01-01 12:00:00]}
         assert {:error, %Ecto.Changeset{}} = Journal.create_entry(user, attrs)
       end
     end
 
     test "create_entry/2 with future date returns error changeset", %{user: user} do
       future_date = NaiveDateTime.add(NaiveDateTime.utc_now(), 3600, :second)
-      attrs = %{notes: "Future entry", mood_rating: 2, entry_date: future_date}
+      attrs = %{notes: "Future entry", mood_rating: 2, inserted_at: future_date}
       assert {:error, %Ecto.Changeset{}} = Journal.create_entry(user, attrs)
     end
 
@@ -44,19 +44,32 @@ defmodule Cbt.JournalTest do
                Journal.create_entry(user, %{notes: "Missing required fields"})
     end
 
+    test "can use new_entry_changeset to set inserted_at and notes", %{user: user} do
+      {:ok, %Journal.Entry{} = entry} =
+        Journal.new_entry_changeset(user, %{
+          notes: "Great day today!",
+          mood_rating: 4,
+          inserted_at: ~N[2024-01-01 12:00:00]
+        })
+        |> Ecto.Changeset.apply_action(:insert)
+
+      assert entry.notes == "Great day today!"
+      assert entry.inserted_at == ~N[2024-01-01 12:00:00]
+    end
+
     test "all_entries/1 returns all entries for user", %{user: user} do
       entry1 =
         Journal.create_entry(user, %{
           notes: "First entry",
           mood_rating: 2,
-          entry_date: ~N[2024-01-01 12:00:00]
+          inserted_at: ~N[2024-01-01 12:00:00]
         })
 
       entry2 =
         Journal.create_entry(user, %{
           notes: "Second entry",
           mood_rating: 3,
-          entry_date: ~N[2024-01-01 13:00:00]
+          inserted_at: ~N[2024-01-01 13:00:00]
         })
 
       assert {:ok, entry1} = entry1
@@ -73,7 +86,7 @@ defmodule Cbt.JournalTest do
         Journal.create_entry(user, %{
           notes: "First entry",
           mood_rating: 2,
-          entry_date: ~N[2024-01-01 12:00:00]
+          inserted_at: ~N[2024-01-01 12:00:00]
         })
 
       assert {:ok, %Entry{}} = Journal.delete_entry(entry, entry.user_id)
@@ -85,7 +98,7 @@ defmodule Cbt.JournalTest do
         Journal.create_entry(user, %{
           notes: "First entry",
           mood_rating: 2,
-          entry_date: ~N[2024-01-01 12:00:00]
+          inserted_at: ~N[2024-01-01 12:00:00]
         })
 
       {:ok, other_user} =

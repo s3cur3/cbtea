@@ -6,8 +6,8 @@ defmodule Util.Ecto do
       nil ->
         changeset
 
-      entry_date ->
-        if NaiveDateTime.after?(entry_date, NaiveDateTime.utc_now()) do
+      dt ->
+        if NaiveDateTime.after?(dt, NaiveDateTime.utc_now()) do
           add_error(changeset, field, "must be in the past")
         else
           changeset

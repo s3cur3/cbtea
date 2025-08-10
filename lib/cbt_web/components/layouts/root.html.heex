@@ -15,6 +15,7 @@
       log_out={~p"/users/log_out"}
       register={~p"/users/register"}
       log_in={~p"/users/log_in"}
+      current_uri={@conn.request_path}
     />
     {@inner_content}
   </body>

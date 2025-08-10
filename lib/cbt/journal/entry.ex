@@ -8,7 +8,6 @@ defmodule Cbt.Journal.Entry do
   typed_schema "journal_entries" do
     field :notes, :string
     field :mood_rating, :integer, null: false
-    field :entry_date, :naive_datetime, null: false
     belongs_to :user, User, null: false
 
     timestamps()
@@ -17,11 +16,11 @@ defmodule Cbt.Journal.Entry do
   @doc false
   def insert_changeset(entry \\ %__MODULE__{}, user_id, attrs) do
     entry
-    |> cast(attrs, [:notes, :mood_rating, :entry_date])
+    |> cast(attrs, [:notes, :mood_rating, :inserted_at])
     |> put_change(:user_id, user_id)
     |> validate_mood_rating()
-    |> Util.Ecto.validate_date_not_in_the_future(:entry_date)
-    |> validate_required([:mood_rating, :entry_date])
+    |> Util.Ecto.validate_date_not_in_the_future(:inserted_at)
+    |> validate_required([:mood_rating])
   end
 
   defp validate_mood_rating(changeset) do
