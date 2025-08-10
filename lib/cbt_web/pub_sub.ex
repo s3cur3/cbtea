@@ -20,6 +20,15 @@ defmodule CbtWeb.PubSub do
     )
   end
 
+  @spec broadcast_journal_entry(Thought.t()) :: any()
+  def broadcast_journal_entry(entry) do
+    Phoenix.PubSub.broadcast(
+      @pubsub_name,
+      user_topic(entry.user_id),
+      {:new_journal_entry, entry}
+    )
+  end
+
   @spec broadcast_user_thought_deletion(Thought.t()) :: any()
   def broadcast_user_thought_deletion(thought) do
     Phoenix.PubSub.broadcast(

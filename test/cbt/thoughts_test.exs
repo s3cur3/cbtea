@@ -5,7 +5,12 @@ defmodule Cbt.ThoughtsTest do
   alias Cbt.Thoughts.Thought
 
   setup do
-    {:ok, user} = Cbt.Accounts.register_user(%{email: "jdoe@example.com", password: "12345678"})
+    {:ok, user} =
+      Cbt.Accounts.register_user(%{
+        email: "jdoe#{System.unique_integer()}@example.com",
+        password: "12345678"
+      })
+
     %{user: user}
   end
 

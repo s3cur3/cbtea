@@ -99,8 +99,16 @@ defmodule CbtWeb.ThoughtsLive do
     {:noreply, stream_insert(socket, :thoughts, thought, at: 0)}
   end
 
+  def handle_info({:new_journal_entry, entry}, socket) do
+    {:noreply, stream_insert(socket, :journal_entries, entry, at: 0)}
+  end
+
   def handle_info({:thought_deleted, thought}, socket) do
     {:noreply, stream_delete(socket, :thoughts, thought)}
+  end
+
+  def handle_info({:journal_entry_deleted, entry}, socket) do
+    {:noreply, stream_delete(socket, :journal_entries, entry)}
   end
 
   def current_user(%{assigns: %{current_user: user}}), do: user
