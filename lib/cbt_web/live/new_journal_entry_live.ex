@@ -43,9 +43,9 @@ defmodule CbtWeb.NewJournalEntryLive do
               <label
                 for={"mood-rating-#{rating}"}
                 class={[
-                  "cursor-pointer p-2 rounded-full transition-colors border-2",
+                  "cursor-pointer w-10 h-10 rounded-full transition-colors border flex flex-col items-center justify-center",
                   if(@form[:mood_rating].value == rating,
-                    do: "bg-blue-100 border-blue-500 ring-2 ring-blue-300 text-blue-900",
+                    do: "bg-blue-100 border-blue-200 text-blue-900",
                     else: "hover:bg-gray-100 border-transparent"
                   )
                 ]}
@@ -54,7 +54,7 @@ defmodule CbtWeb.NewJournalEntryLive do
               </label>
               <span class={[
                 "text-xs mt-1",
-                if(@form[:mood_rating].value == rating, do: "text-blue-700 font-semibold", else: "text-gray-600")
+                if(@form[:mood_rating].value == rating, do: "text-blue-600", else: "text-gray-600")
               ]}>
                 {mood_label(rating)}
               </span>
